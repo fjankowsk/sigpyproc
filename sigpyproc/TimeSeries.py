@@ -1,3 +1,4 @@
+from __future__ import print_function
 from numpy.ctypeslib import as_ctypes as as_c
 import numpy as np
 import ctypes as C
@@ -41,7 +42,7 @@ class TimeSeries(np.ndarray):
         :rtype: :class:`~sigpyproc.FoldedData.FoldedData`  
         """
         if self.size/(nbins*nints) < 10: 
-            raise ValueError,"nbins x nints is too large for length of data"
+            raise ValueError("nbins x nints is too large for length of data")
         fold_ar  = np.zeros(nbins*nints,dtype="float64")
         count_ar = np.zeros(nbins*nints,dtype="int32")
         lib.foldTim(as_c(self),
@@ -227,7 +228,7 @@ class TimeSeries(np.ndarray):
         else:
             new_size = self.size
         out_ar = np.zeros(new_size,dtype="float32")
-        print new_size
+        print(new_size)
         lib.resample(as_c(self),
                      as_c(out_ar),
                      C.c_int(new_size),
