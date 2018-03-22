@@ -5,7 +5,7 @@ from sigpyproc.HeaderParams import nbits_to_dtype
 
 lib  = C.CDLL("libSigPyProc.so")
 
-class File(file):
+class File():
     """A class to handle writing of arbitrary bit size data to file.
 
     :param filename: name of file to open
