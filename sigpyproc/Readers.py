@@ -1,4 +1,5 @@
 from __future__ import print_function
+from builtins import range
 import os
 import time
 import sigpyproc.HeaderParams as conf
@@ -253,7 +254,7 @@ def parseInfHeader(filename):
     for line in lines:
         key = line.split("=")[0].strip()
         val = line.split("=")[-1].strip()
-        if not key in conf.inf_to_header.keys():
+        if not key in list(conf.inf_to_header.keys()):
             continue
         else:
             key,keytype = conf.inf_to_header[key]

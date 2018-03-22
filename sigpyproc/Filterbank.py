@@ -1,4 +1,6 @@
 from __future__ import print_function
+from builtins import range
+from builtins import object
 from numpy.ctypeslib import as_ctypes as as_c
 from sigpyproc.Utils import rollArray
 from sigpyproc.FoldedData import FoldedData
@@ -456,7 +458,7 @@ class Filterbank(object):
                                              {"nchans":1,"nbits":32,"data_type":2},
                                              back_compatible=back_compatible,nbits=32)
             
-                     for ii in xrange(self.header.nchans)]
+                     for ii in range(self.header.nchans)]
         for nsamps,ii,data in self.readPlan(gulp):
             self.lib.splitToChans(as_c(data),
                                   tim_ar_c,
