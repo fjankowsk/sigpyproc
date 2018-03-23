@@ -23,7 +23,9 @@ once built
 
 2. Unzip and untar if needed and move to source directory
 
-3. Make sure FFTW3 has been compiled with the ``--enable-float`` and ``--enable-shared`` options
+3. Make sure FFTW3 has been compiled with the ``--enable-float`` and
+``--enable-shared`` options. Also set the environment variable $FFTW_PATH
+appropriately for your installation.
 
 4. run ``sudo python setup.py install``
 
