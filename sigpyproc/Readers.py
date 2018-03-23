@@ -5,6 +5,7 @@ import time
 import sigpyproc.HeaderParams as conf
 import numpy as np
 from inspect import stack as istack
+import struct
 from struct import unpack
 from sys import stdout
 from sigpyproc.Utils import File
