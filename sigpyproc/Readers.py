@@ -281,18 +281,30 @@ def parseSigprocHeader(filename):
     :return: observational metadata
     :rtype: :class:`~sigpyproc.Header.Header`
     """
-    f = open(filename,"r")
+
+    f = open(filename,"rb")
     header = {}
+
     try:
         keylen = unpack("I",f.read(4))[0]
     except struct.error:
         raise IOError("File Header is not in sigproc format... Is file empty?")
+
     key = f.read(keylen)
-    if key != "HEADER_START":
+    if key != b"HEADER_START":
         raise IOError("File Header is not in sigproc format")
+
     while True:
         keylen = unpack("I",f.read(4))[0]
         key = f.read(keylen)
+
+        # convert bytestring to unicode
+        try:
+            key = key.decode("UTF-8")
+        except UnicodeDecodeError as e:
+            print("Could not convert to unicode: {0}".format(str(e)))
+
+        # this is basically a sanity check that we haven't passed header_end
         if not key in conf.header_keys:
             print("'%s' not recognised header key"%(key))
             return None
